@@ -2,4 +2,4 @@
 
 Práctica Módulo MEAN - NodeJS & MongoDB
 
-	- **José Antonio Maldonado**
+	- *José Antonio Maldonado*
