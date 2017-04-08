@@ -14,4 +14,4 @@ const anuncioSchema = mongoose.Schema({
 
 
 // Creamos el modelo
-var Agente = mongoose.model('Anuncio', anuncioSchema);
+let Anuncio = mongoose.model('Anuncio', anuncioSchema);
