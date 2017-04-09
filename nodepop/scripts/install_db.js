@@ -25,7 +25,7 @@ client.connect('mongodb://localhost:27017/nodepop', function(err, db) {
         {
             name: "admin",
             email: "admin@demonode.es",
-            pass: "$2a$06$kNJ95eIcIqioRiYmzxp0JOypl19wu.JbrNwdaP8gBANPh8PRr3nz6",
+            pass: "$2a$10$erpfDpdzookeal6w2NKGJ.dv7XUZWCIljGmuG8gY6skBcduy/g/n6",
         }
     ],function (err, result) {
         if(err){
