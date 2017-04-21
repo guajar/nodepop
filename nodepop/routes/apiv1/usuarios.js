@@ -92,7 +92,7 @@ router.post('/authenticate', function (req, res, next) {
             return res.json({success: false, error: 'User not found'});
         }
 
-        // test a matching password
+        // comprobamos la password
         user.comparePassword(password, function(err, isMatch) {
             if (err) throw err;
             if(!isMatch) {
