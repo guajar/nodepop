@@ -4,8 +4,24 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var i18n = require('i18n');
 
 var app = express();
+
+i18n.configure({
+
+    //define how many languages we would support in our application
+    locales:['es', 'en'],
+
+    //define the path to language json files, default is /locales
+    directory: __dirname + '/locales',
+
+    //define the default language
+    defaultLocale: 'es',
+});
+
+//init i18n
+app.use(i18n.init);
 
 require('./lib/connectMongoose');
 require('./models/Anuncio');

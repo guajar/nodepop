@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const localConfig = require('../../utils/localConfig');
 const check = require('../../utils/checker');
+const mensajesErr = require('../../utils/customError');
 
 const router = express.Router();
 const Usuario = mongoose.model('Usuario');
@@ -20,19 +21,20 @@ router.post('/signup', function (req, res, next) {
     const nombre = req.body.name;
     const email = req.body.email;
     const pass = req.body.pass;
-    //const lang = req.body.lang || configUsers.language;
+    const lang = req.headers["accept-language"];
 
     if (!nombre) {
         return res.json({
             success: false,
-            error: 'name required'});
+            error: mensajesErr['NAME_REQUIRED'][lang]
+        });
         return;
     }
 
     if (!email) {
         return res.json({
             success: false,
-            error: 'mail required'
+            error: mensajesErr['EMAIL_IS_NEEDED'][lang]
         });
         return;
     }
@@ -40,7 +42,7 @@ router.post('/signup', function (req, res, next) {
     if(!check.isEmail(email)){
         res.json({
             success:false,
-            error: 'email no valido'
+            error: mensajesErr['INVALID_EMAIL'][lang]
         });
         return;
     }
@@ -48,7 +50,7 @@ router.post('/signup', function (req, res, next) {
     if (!pass) {
         return res.json({
             success: false,
-            error: 'password required'
+            error: mensajesErr['PASSWORD_IS_NEEDED'][lang]
         });
         return;
     }
@@ -63,7 +65,7 @@ router.post('/signup', function (req, res, next) {
         if(err){
             res.json({
                 success:false,
-                error: 'Error al guardar'
+                error:  mensajesErr['ERROR_SAVING'][lang]
             });
             return;
         }
@@ -80,6 +82,7 @@ router.post('/authenticate', function (req, res, next) {
     // Recogemos credenciales
     const username = req.body.username;
     const password = req.body.password;
+    const lang = req.headers["accept-language"];
 
     //Buscamos en la BD
     Usuario.findOne({email: username}).exec(function (err, user) {
@@ -89,14 +92,14 @@ router.post('/authenticate', function (req, res, next) {
         }
 
         if (!user) {
-            return res.json({success: false, error: 'User not found'});
+            return res.json({success: false, error: mensajesErr['USER_NOT_FOUND'][lang]});
         }
 
         // comprobamos la password
         user.comparePassword(password, function(err, isMatch) {
             if (err) throw err;
             if(!isMatch) {
-                return res.json({success: false, error: 'Password incorrect'});
+                return res.json({success: false, error: mensajesErr['INVALID_PASSWORD'][lang]});
             }
 
             if(isMatch) {

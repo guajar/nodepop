@@ -1,0 +1,9 @@
+{
+  "TOKEN_IS_NEEDED": "Token is needed",
+  "FAILED_TO_AUTHENTICATE_TOKEN": "Failer to authenticate token",
+  "EMAIL_IS_NEEDED": "Email is needed",
+  "PASSWORD_IS_NEEDED": "Password is needed",
+  "NAME_IS_NEEDED": "Name is needed",
+  "USER_NOT_FOUND": "Authentication failed. User not found",
+  "INVALID_PASSWORD": "Authentication failed. Invalid password"
+}

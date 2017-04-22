@@ -1,0 +1,9 @@
+{
+  "TOKEN_IS_NEEDED": "Es necesario el token",
+  "FAILED_TO_AUTHENTICATE_TOKEN": "Fallo al autenticar el token",
+  "EMAIL_IS_NEEDED": "El email es necesario",
+  "PASSWORD_IS_NEEDED": "La contraseña es necesaria",
+  "NAME_IS_NEEDED": "El nombre es necesario",
+  "USER_NOT_FOUND": "Autenticación fallida. Usuario no encontrado",
+  "INVALID_PASSWORD": "Autenticación fallida. Contraseña incorrecta"
+}

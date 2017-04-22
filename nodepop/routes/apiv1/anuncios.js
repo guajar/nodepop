@@ -6,7 +6,7 @@
 
 const express = require('express');
 const router = express.Router();
-const customError = require('../../utils/customError');
+const mensajesErr = require('../../utils/customError');
 
 
 // Cargamos mongoose y el modelo de Agente
@@ -27,11 +27,10 @@ router.get('/', function(req, res, next) {
     const start = parseInt(req.query.start) || 0;
     const sort = req.query.sort || null;
     const limit = parseInt(req.query.limit) || null;
-    const lang = req.quer
 
     const filter = {};
 
-    // Compruebo los parametros de búsqueda antes de realizar la llamada
+    // Compruebo los parámetros de búsqueda antes de realizar la llamada
     if(nombre) {
         filter.nombre = new RegExp("^" + nombre, "i");
     }
@@ -70,7 +69,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/tags',function (req,res) {
-    //let lang = req.query.lang || configUsers.language;
+    const lang = req.headers["accept-language"];
 
     Anuncio.listTags()
         .then(function (tags) {
@@ -81,8 +80,7 @@ router.get('/tags',function (req,res) {
         }).catch(function () {
         res.json({
             success:false,
-            code:20709
-            //msg: mensajesErr[20709][lang]
+            error: mensajesErr['CONNECTION_FAILURE'][lang]
         })
     });
 });
